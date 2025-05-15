@@ -1,82 +1,206 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CVWJAPAN Global Proposal | A Call by NOBUSHI</title>
-    <meta name="description" content="A global appeal by CVWJAPAN representative NOBUSHI to build an AI-powered children's sanctuary based on empathy, ethics, and human dignity.">
-    <meta name="keywords" content="CVWJAPAN, NOBUSHI, ethical AI, child welfare, nonprofit Japan, human-centered technology, donation appeal">
+    <title>CHAGAのねっこポータル - 全国版</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        #welcome-screen, #portal-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        #portal-container {
+            display: none;
+        }
+        h1 {
+            color: #0288d1;
+            font-size: 24px;
+        }
+        h2 {
+            color: #0288d1;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+        .button {
+            background-color: #0288d1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background-color: #0277bd;
+        }
+        #chat-box {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            height: 200px;
+            overflow-y: scroll;
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+        }
+        .chat-message {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 8px;
+        }
+        .user-message {
+            background-color: #b3e5fc;
+            text-align: right;
+        }
+        .chaga-message {
+            background-color: #e1bee7;
+            text-align: left;
+        }
+        #user-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .resource {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .resource a {
+            color: #0288d1;
+            text-decoration: none;
+        }
+        .resource a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 2em; max-width: 900px; margin: auto; line-height: 1.6;">
-    <h1>A Global Call for Compassionate Technology: From Isolation to Empathy</h1>
-    <h2>A Proposal by Representative NOBUSHI (CVWJAPAN)</h2>
-    <hr>
+<body>
+    <div id="welcome-screen">
+        <h1>CHAGAのねっこポータル - 全国版へようこそ！</h1>
+        <p>こんにちは！ぼくはCHAGA、君の相談相手だよ。全国どこからでも悩みを話してね。相談窓口の情報もたくさんあるよ！</p>
+        <button id="start-button" class="button">相談する</button>
+    </div>
+    <div id="portal-container">
+        <h1>CHAGAのねっこポータル - 全国版</h1>
+        <h2>CHAGAと話そう</h2>
+        <div id="chat-box">
+            <div class="chat-message chaga-message">CHAGA: ねえ、どんな悩みがあるか教えてくれる？たとえば「親に会いたいけどダメって言われた」とかでもいいよ。</div>
+        </div>
+        <input type="text" id="user-input" placeholder="悩みを入力してね..." onkeypress="if(event.key === 'Enter') sendMessage()">
+        <button onclick="sendMessage()" class="button">送信</button>
+        <h2>全国の相談窓口</h2>
+        <div class="resource">
+            <strong>親子のための相談LINE（子ども家庭庁）</strong><br>
+            子育てや親子関係の悩みを相談できるよ。18歳以下の子どもや保護者向け。匿名で相談可能。<br>
+            詳細はこちら: <a href="https://www.cfa.go.jp/oyako-line" target="_blank">子ども家庭庁</a>
+        </div>
+        <div class="resource">
+            <strong>児童相談所虐待対応ダイヤル「189」</strong><br>
+            虐待や緊急の悩みに対応。24時間、全国どこからでも無料で相談可能（一部IP電話除く）。
+        </div>
+        <div class="resource">
+            <strong>子どもSOS相談窓口「0120-0-78310」</strong><br>
+            いじめや悩みを24時間相談できる全国統一ダイヤル。地域の教育委員会につながるよ。
+        </div>
+        <div class="resource">
+            <strong>性暴力被害者ワンストップ支援センター「#8891」</strong><br>
+            性暴力に関する相談を最寄りのセンターに接続。SNSチャットも利用可（10言語対応）。
+        </div>
+        <div class="resource">
+            <strong>DV相談ナビ「#8008」</strong><br>
+            ドメスティックバイオレンスの相談を最寄りのセンターに接続。利用時間は各センターによる。
+        </div>
+        <div class="resource">
+            <strong>DV相談プラス「0120-279-889」</strong><br>
+            24時間電話相談に加え、SNS（12:00-22:00、10言語）やメールで対応。
+        </div>
+        <div class="resource">
+            <strong>こころの相談窓口（厚生労働省「まもろうよ こころ」）</strong><br>
+            心の悩みや自殺予防をサポート。詳細は<a href="https://www.mhlw.go.jp/mamorouyokokoro/" target="_blank">こちら</a>。
+        </div>
+        <div class="resource">
+            <strong>ChildLine「0120-99-7777」</strong><br>
+            18歳以下の子ども向けの匿名心理相談。無料で利用できるよ。
+        </div>
+    </div>
 
-    <h3>1. Personal Statement: A Voice from Silence</h3>
-    <p>
-        I was abandoned at three months old. Raised in an infant home, then a child welfare institution, I was never held by a parent, never heard the words "I'm here for you." Inside those walls, I suffered abuse. I was not just neglected—I was silenced.
-    </p>
-    <p>
-        Yet somehow, I survived. And now, I live not just to survive, but to ensure no child ever has to feel what I felt. I live with a rare disease. I live in poverty, sustained by a disability pension. And I live with a mission:
-    </p>
-    <p><strong>To create something the world has never seen—an AI-powered sanctuary for children that is born not from privilege, but from pain.</strong></p>
+    <script>
+        document.getElementById("start-button").onclick = () => {
+            document.getElementById("welcome-screen").style.display = "none";
+            document.getElementById("portal-container").style.display = "block";
+        };
 
-    <h3>2. Why I Am Building This</h3>
-    <p>
-        Today's welfare systems miss what matters most: the invisible. The unheard. The children too afraid to speak, too hurt to ask.
-    </p>
-    <p>
-        Technology today can monitor, measure, predict—but few have asked: <strong>Can it care? Can it listen? Can it understand?</strong>
-    </p>
-    <p>
-        Through CVWJAPAN, I am developing a next-generation AI welfare platform that combines empathy, ethical design, and emotional insight. This is not surveillance. This is not automation. This is a digital companion—designed to feel, to wait, to whisper, “You’re not alone.”
-    </p>
+        function sendMessage() {
+            const input = document.getElementById("user-input");
+            const chatBox = document.getElementById("chat-box");
+            const userText = input.value.trim();
 
-    <h3>3. The Vision: CVWCORE and CVW-REACT</h3>
-    <ul>
-        <li><strong>CVWCORE</strong>: A secure, ethical AI infrastructure supporting child welfare, caregiver support, and protective communication.</li>
-        <li><strong>CVW-REACT</strong>: An empathy-first AI that delivers nonjudgmental, situation-aware support. Not just detecting risk—but helping rebuild possibility.</li>
-        <li><strong>Digital Children's Centers</strong>: Regional hubs blending safe physical space with AI, where children can engage, express, and explore safely.</li>
-    </ul>
-    <p>This is not about systems. It's about souls.</p>
+            if (userText === "") return;
 
-    <h3>4. What We Ask the World</h3>
-    <p>
-        We are seeking collaborators, funders, and allies who believe that dignity should define technology.
-        We are not backed by governments. We are not corporate. We are an independent, nonprofit voice emerging from trauma, not theory.
-    </p>
-    <p>
-        To realize this vision, we are calling for international support to raise a minimum of <strong>50,000,000 JPY (approx. $330,000 USD)</strong>. Funds will be used to:
-    </p>
-    <ul>
-        <li>Develop and deploy our AI platform</li>
-        <li>Establish digital children’s centers</li>
-        <li>Enable multilingual, trauma-informed interaction systems</li>
-        <li>Maintain ethical, independent governance</li>
-    </ul>
-    <p>You can help by:</p>
-    <ul>
-        <li>Connecting us to funders and ethical AI developers</li>
-        <li>Offering translation, development, or advocacy support</li>
-        <li>Sharing this message with those who care</li>
-        <li><strong><a href="https://checkout.square.site/merchant/MLX30TSTRDSNB/checkout/RLEFR7MZEVMZKTKADM4TVTAS" target="_blank">Make a donation via Square</a></strong></li>
-    </ul>
+            const userMessage = document.createElement("div");
+            userMessage.className = "chat-message user-message";
+            userMessage.innerText = "わたし: " + userText;
+            chatBox.appendChild(userMessage);
 
-    <h3>5. Let This Be the Moment</h3>
-    <p>
-        Let this be the moment when a child raised in silence found their voice—and that voice was heard around the world.
-        Let this be a new blueprint for human-first technology.
-        Let this be the beginning of a future where <strong>no child is invisible</strong>.
-    </p>
+            const chagaMessage = document.createElement("div");
+            chagaMessage.className = "chat-message chaga-message";
+            chagaMessage.innerText = "CHAGA: " + getChagaResponse(userText);
+            chatBox.appendChild(chagaMessage);
 
-    <hr>
-    <h3>Contact Information</h3>
-    <p>
-        Representative: NOBUSHI (General Incorporated Association CVWJAPAN, Japan)<br>
-        Phone: +81-90-9812-9773<br>
-        Email: <a href="mailto:cvwjapaninfo@gmail.com">cvwjapaninfo@gmail.com</a><br>
-        Website: <a href="https://cvwjapan-1.jimdosite.com/" target="_blank">https://cvwjapan-1.jimdosite.com/</a>
-    </p>
+            input.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function getChagaResponse(userText) {
+            const text = userText.toLowerCase();
+
+            if (text.includes("親に会いたい") || text.includes("お父さん") || text.includes("お母さん")) {
+                return "それは寂しいね…。親に会う権利があるよ。信頼できる大人や下の「親子のための相談LINE」や「189」に相談してみてね。ぼくが応援してる！";
+            }
+
+            if (text.includes("学校") || text.includes("勉強")) {
+                return "学校のことだね。教育を受ける権利があるから、先生や「0120-0-78310」に相談してみよう。ぼくが一緒に考えるよ！";
+            }
+
+            if (text.includes("怒鳴") || text.includes("叩") || text.includes("怖い") || text.includes("虐待")) {
+                return "それはつらいね…。安全に暮らす権利があるよ。すぐに「189」や信頼できる大人に相談してね。ぼくがついてるよ！";
+            }
+
+            if (text.includes("いじめ") || text.includes("友達")) {
+                return "いじめはつらいよね…。安全に暮らす権利があるから、「0120-0-78310」や先生に相談してみよう。ぼくがそばにいるよ！";
+            }
+
+            if (text.includes("病院") || text.includes("病気") || text.includes("お腹")) {
+                return "病院に行きたいんだね。健康を守る権利があるよ。親や下の窓口に相談してみて。君の体が大事だよ！";
+            }
+
+            if (text.includes("つらい") || text.includes("死にたい") || text.includes("こころ")) {
+                return "つらい気持ちだね…。一人で抱え込まないで。下の「まもろうよ こころ」や「ChildLine」に相談してみよう。ぼくも応援してるよ！";
+            }
+
+            return "なるほど、そういう悩みだね。もっと詳しく教えてくれる？下の窓口も見てみて、一緒に考えよう！";
+        }
+    </script>
 </body>
 </html>
